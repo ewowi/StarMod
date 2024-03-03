@@ -39,6 +39,9 @@
   #ifdef STARMOD_USERMOD_DDP
     #include "User/UserModDDP.h"
   #endif
+  #ifdef USERMOD_HUB75
+    #include "User/UserModHub75.h"
+  #endif
 #endif
 #ifdef STARMOD_USERMOD_E131
   #include "User/UserModE131.h"
@@ -50,6 +53,7 @@
   #include "User/UserModWLEDAudio.h"
 #endif
 #include "Sys/SysModAI.h"
+
 
 //setup all modules
 void setup() {
@@ -89,6 +93,9 @@ void setup() {
   #ifdef STARMOD_USERMOD_WLEDAUDIO
     wledAudioMod = new UserModWLEDAudio();
   #endif
+  #ifdef USERMOD_HUB75
+    hub75Mod = new UserModHub75();
+  #endif
 
   //Reorder with care! If changed make sure mdlEnabled.chFun executes var["value"].to<JsonArray>(); and saveModel! 
   //Default: add below, not in between
@@ -124,6 +131,9 @@ void setup() {
     mdls->add(wledAudioMod); //no ui
   #endif
   mdls->add(mdns); //no ui
+  #ifdef USERMOD_HUB75
+    mdls->add(hub75Mod);
+  #endif
   mdls->add(instances);
 
   //do not add mdls itself as it does setup and loop for itself!!! (it is the orchestrator)
