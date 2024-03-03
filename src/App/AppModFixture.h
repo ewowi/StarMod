@@ -41,7 +41,7 @@ public:
 
         unsigned8 result = mdl->getValue("on").as<bool>()?linearToLogarithm(var, bri):0;
 
-        FastLED.setBrightness(result);
+        // TODO: driver.setBrightness(result);
 
         USER_PRINTF("Set Brightness to %d -> b:%d r:%d\n", var["value"].as<int>(), bri, result);
         return true; }
